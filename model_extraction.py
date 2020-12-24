@@ -25,5 +25,5 @@ def load_model(name='model', path='models/'):
     loaded_model = model_from_json(loaded_model_json)
     # load weights into new model
     loaded_model.load_weights(path+name+'.h5')
-    print("Loaded model from disk")
+    # print("Loaded model from disk")
     return loaded_model

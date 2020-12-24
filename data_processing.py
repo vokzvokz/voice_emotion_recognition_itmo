@@ -11,7 +11,7 @@ def transform_data(X_train, X_test, y_train, y_test):
     lb = LabelEncoder()
     y_train = np_utils.to_categorical(lb.fit_transform(y_train))
     y_test = np_utils.to_categorical(lb.fit_transform(y_test))
-    return X_train, X_test, y_train, y_test
+    return X_train, X_test, y_train, y_test, lb
 
 
 def split_df(df, test_size=0.2, transform=False):

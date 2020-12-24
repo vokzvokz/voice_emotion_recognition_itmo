@@ -46,7 +46,7 @@ def read_as_mfcc(list_of_files):
     df = pd.DataFrame(columns=['feature'])
     bookmark = 0
     for index, y in enumerate(list_of_files):
-        print('{}/{}'.format(index, len(list_of_files)))
+        # print('{}/{}'.format(index, len(list_of_files)))
         if list_of_files[index][6:-16] != '01' \
                 and list_of_files[index][6:-16] != '07' \
                 and list_of_files[index][6:-16] != '08' \
@@ -63,12 +63,14 @@ def read_as_mfcc(list_of_files):
             feature = mfccs
             df.loc[bookmark] = [feature]
             bookmark = bookmark + 1
-    print('Done')
+    # print('Done')
     return df
 
 
-def read_raw_files(path='RawData/'):
+def read_raw_files(path='RawData/', n_files=0):
     list_of_files = os.listdir(path)
+    if n_files != 0:
+        list_of_files = list_of_files[0:-1:n_files]
     feelings_list = rename_list_of_files(list_of_files)
     labels = pd.DataFrame({'label': feelings_list})
     frame = read_as_mfcc(list_of_files)
